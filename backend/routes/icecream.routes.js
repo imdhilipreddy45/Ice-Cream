@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const IceCream = require('../models/icecream');
+const IceCream = require('../models/IceCream');
 
 // Create a new Ice Cream
 router.post('/', async (req, res) => {
