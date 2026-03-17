@@ -1,0 +1,8 @@
+{
+  "name": "ice-cream-app",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npm run build --prefix frontend && npm install --prefix backend",
+    "install:all": "npm install --prefix frontend && npm install --prefix backend"
+  }
+}

@@ -1,0 +1,134 @@
+.list-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--dark);
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+.loader {
+  font-size: 1.5rem;
+  font-weight: 600;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 0.5; }
+}
+
+.error-msg {
+  background-color: #ffeaea;
+  color: var(--danger);
+  border-left: 5px solid var(--danger);
+}
+
+.empty-state {
+  text-align: center;
+}
+
+.mt-2 {
+  margin-top: 1rem;
+}
+
+.card {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.icecream-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.icecream-card {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.icecream-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.card-image {
+  height: 120px;
+  background: linear-gradient(135deg, var(--primary) 0%, #ff8a8a 100%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flavor-badge {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  color: var(--primary);
+  font-size: 0.9rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.card-content {
+  padding: 1.5rem;
+}
+
+.name {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 0.8rem;
+  color: #777;
+  text-transform: uppercase;
+}
+
+.value {
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.low-stock {
+  color: var(--danger);
+}
+
+.card-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.card-actions .btn {
+  flex: 1;
+  text-align: center;
+}
+
+/* Animations are defined globally in styles.css */

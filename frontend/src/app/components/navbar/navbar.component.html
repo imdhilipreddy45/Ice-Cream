@@ -1,0 +1,20 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <a routerLink="/" class="navbar-brand">
+      <span class="icon">🍦</span> Scoops Haven
+    </a>
+    
+    <ul class="nav-links">
+      <li>
+        <a routerLink="/icecreams" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
+          Flavors Collection
+        </a>
+      </li>
+      <li>
+        <a routerLink="/create" routerLinkActive="active" class="nav-link btn btn-primary">
+          <span class="plus-icon">+</span> Add Ice Cream
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

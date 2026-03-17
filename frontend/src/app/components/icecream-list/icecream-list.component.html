@@ -1,0 +1,46 @@
+<div class="list-header fade-in">
+  <h1>Our Flavors Collection</h1>
+  <p *ngIf="!isLoading">Manage your inventory of delicious treats!</p>
+</div>
+
+<div *ngIf="isLoading" class="loader-container">
+  <div class="loader">🍦 Loading Scoops...</div>
+</div>
+
+<div *ngIf="error" class="error-msg card fade-in">
+  {{ error }}
+</div>
+
+<div *ngIf="!isLoading && !error && icecreams.length === 0" class="empty-state fade-in card">
+  <h2>No Ice Creams Found 😕</h2>
+  <p>Your shop is currently empty! Add some delicious scoops to get started.</p>
+  <a routerLink="/create" class="btn btn-primary mt-2">Add First Flavor</a>
+</div>
+
+<div class="icecream-grid" *ngIf="!isLoading && !error && icecreams.length > 0">
+  <div class="icecream-card fade-in" *ngFor="let ic of icecreams; let i = index" [style.animationDelay]="i * 0.1 + 's'">
+    <div class="card-image">
+      <div class="flavor-badge">{{ ic.flavor }}</div>
+    </div>
+    
+    <div class="card-content">
+      <h3 class="name">{{ ic.name }}</h3>
+      
+      <div class="details">
+        <div class="detail-item">
+          <span class="label">Price</span>
+          <span class="value">${{ ic.price.toFixed(2) }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="label">Stock</span>
+          <span class="value" [class.low-stock]="ic.stock < 10">{{ ic.stock }} units</span>
+        </div>
+      </div>
+      
+      <div class="card-actions">
+        <a [routerLink]="['/edit', ic._id]" class="btn btn-secondary">Edit</a>
+        <button (click)="deleteIceCream(ic._id)" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

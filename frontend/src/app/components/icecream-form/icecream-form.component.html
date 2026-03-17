@@ -1,0 +1,91 @@
+<div class="form-container card fade-in">
+  <h2>{{ isEditMode ? 'Edit Ice Cream' : 'Add New Flavor' }}</h2>
+  <p class="subtitle">{{ isEditMode ? 'Update flavor details.' : 'Fill in the details for your magnificent new flavor.' }}</p>
+
+  <form (ngSubmit)="onSubmit()" #iceCreamForm="ngForm">
+    
+    <div class="form-group">
+      <label for="name">Ice Cream Name</label>
+      <input 
+        type="text" 
+        id="name" 
+        name="name" 
+        class="form-control" 
+        [(ngModel)]="icecream.name" 
+        required 
+        placeholder="e.g. Midnight Galaxy"
+        #name="ngModel">
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="error-text">
+        <small>Name is required.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="flavor">Flavor Profile</label>
+      <input 
+        type="text" 
+        id="flavor" 
+        name="flavor" 
+        class="form-control" 
+        [(ngModel)]="icecream.flavor" 
+        required 
+        placeholder="e.g. Chocolate & Mint"
+        #flavor="ngModel">
+      <div *ngIf="flavor.invalid && (flavor.dirty || flavor.touched)" class="error-text">
+        <small>Flavor profile is required.</small>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group half-width">
+        <label for="price">Price ($)</label>
+        <input 
+          type="number" 
+          id="price" 
+          name="price" 
+          class="form-control" 
+          [(ngModel)]="icecream.price" 
+          required 
+          min="0"
+          step="0.01"
+          #price="ngModel">
+        <div *ngIf="price.invalid && (price.dirty || price.touched)" class="error-text">
+          <small>Valid price is required.</small>
+        </div>
+      </div>
+
+      <div class="form-group half-width">
+        <label for="stock">Current Stock</label>
+        <input 
+          type="number" 
+          id="stock" 
+          name="stock" 
+          class="form-control" 
+          [(ngModel)]="icecream.stock" 
+          required 
+          min="0"
+          #stock="ngModel">
+        <div *ngIf="stock.invalid && (stock.dirty || stock.touched)" class="error-text">
+          <small>Valid stock amount is required.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions mt-2">
+      <button 
+        type="submit" 
+        class="btn btn-primary submit-btn" 
+        [disabled]="iceCreamForm.invalid || isLoading">
+        <span *ngIf="isLoading" class="spinner"></span>
+        {{ isLoading ? 'Saving...' : (isEditMode ? 'Update Flavor' : 'Add to Collection') }}
+      </button>
+      <button 
+        type="button" 
+        class="btn btn-secondary cancel-btn" 
+        (click)="router.navigate(['/icecreams'])">
+        Cancel
+      </button>
+    </div>
+
+  </form>
+</div>
