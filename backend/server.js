@@ -33,7 +33,11 @@ app.use(async (req, res, next) => {
     await connectToDatabase();
     next();
   } catch (error) {
-    res.status(500).json({ message: "Database connection failed" });
+    res.status(500).json({ 
+      message: "Database connection failed", 
+      error: error.message,
+      uri: process.env.MONGODB_URI ? "URI is set" : "URI is MISSING"
+    });
   }
 });
 // Routes
