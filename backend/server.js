@@ -54,8 +54,10 @@ app.get('/', (req, res) => {
   res.send('🍦 Ice Cream Management API is running...');
 });
 
-// Start Server (only if not running in Vercel Serverless functions)
-if (process.env.NODE_ENV !== 'production') {
+// Start Server 
+// For Render and local development, we need to listen on a port.
+// Vercel handles the listening automatically for serverless functions.
+if (process.env.VERCEL !== '1') {
   app.listen(PORT, () => {
     console.log(`🚀 Server is running on port ${PORT}`);
   });
