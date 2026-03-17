@@ -9,11 +9,33 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/icecreamdb')
-  .then(() => console.log('✅ Connected to MongoDB database'))
-  .catch(err => console.error('❌ MongoDB connection error:', err.message));
+// MongoDB Connection (Cached for Serverless)
+let cachedDb = null;
 
+async function connectToDatabase() {
+  if (cachedDb) return cachedDb;
+
+  const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/icecreamdb';
+  try {
+    const db = await mongoose.connect(uri);
+    cachedDb = db;
+    console.log('✅ Connected to MongoDB database');
+    return db;
+  } catch (err) {
+    console.error('❌ MongoDB connection error:', err.message);
+    throw err;
+  }
+}
+
+// Ensure connection before handling routes
+app.use(async (req, res, next) => {
+  try {
+    await connectToDatabase();
+    next();
+  } catch (error) {
+    res.status(500).json({ message: "Database connection failed" });
+  }
+});
 // Routes
 const iceCreamRoutes = require('./routes/icecream.routes');
 app.use('/api/icecreams', iceCreamRoutes);
