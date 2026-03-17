@@ -1,6 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const dns = require('dns');
+
+// Force DNS resolution to use Google and Cloudflare DNS
+// This often fixes ENOTFOUND issues with MongoDB SRV records in Serverless environments
+dns.setServers(['8.8.8.8', '8.8.4.4', '1.1.1.1']);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
